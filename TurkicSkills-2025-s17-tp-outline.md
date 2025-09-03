@@ -48,7 +48,6 @@ The client will provide:
 
 ⚠️ Restrictions:  
 - No server-side or client-side frameworks allowed.  
-- CSS preprocessors may be used, but the generated code must still pass **W3C validation**.  
 
 ---
 
