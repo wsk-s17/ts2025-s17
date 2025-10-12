@@ -14,3 +14,14 @@
 | Next JS        | [wsk-s17/next-js](https://github.com/wsk-s17/next-js)               | [docs](https://nextjs.org/docs)                          |
 | Vue JS         | [wsk-s17/vue-js](https://github.com/wsk-s17/vue-js)                 | [docs](https://vuejs.org/guide/introduction.html)        |
 | Vanilla JS/PHP | [wsk-s17/vanilla-js-php](https://github.com/wsk-s17/vanilla-js-php) | -                                                        |
+
+## Modules
+
+| Module | Link                                                                                                         |
+|--------|--------------------------------------------------------------------------------------------------------------|
+| A      | [wsk-s17/ts2025-s17/tasks/module-a](https://github.com/wsk-s17/ts2025-s17/tasks/module-a/INSTRUCTIONS_EN.md) |
+| B      | [wsk-s17/ts2025-s17/tasks/module-b](https://github.com/wsk-s17/ts2025-s17/tasks/module-b/INSTRUCTIONS_EN.md) |
+| C      | [wsk-s17/ts2025-s17/tasks/module-c](https://github.com/wsk-s17/ts2025-s17/tasks/module-c/INSTRUCTIONS_EN.md) |
+| D      | [wsk-s17/ts2025-s17/tasks/module-d](https://github.com/wsk-s17/ts2025-s17/tasks/module-d/INSTRUCTIONS_EN.md) |
+| E      | [wsk-s17/ts2025-s17/tasks/module-e](https://github.com/wsk-s17/ts2025-s17/tasks/module-e/INSTRUCTIONS_EN.md) |
+| F      | [wsk-s17/ts2025-s17/tasks/module-f](https://github.com/wsk-s17/ts2025-s17/tasks/module-f/INSTRUCTIONS_EN.md) |

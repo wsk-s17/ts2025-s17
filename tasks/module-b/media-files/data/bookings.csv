@@ -1,0 +1,7 @@
+booking_key,rating,price,percentageOfWear,startedAt,endedAt,bicycle_ref,tariff_ref,user_ref,photos
+BKG_01,4,315,5,NOW,NOW+5m,BIC_01,TAR_01,USR_03,"[""bicycle-1.jpg"",""bicycle-2.jpg""]"
+BKG_02,5,1520,8,NOW,NOW+14m,BIC_02,TAR_01,USR_03,"[""bicycle-1.jpg"",""bicycle-2.jpg""]"
+BKG_03,5,850,4,NOW,NOW+8m,BIC_02,TAR_02,USR_03,"[""bicycle-1.jpg"",""bicycle-2.jpg""]"
+BKG_04,4,2500,14,NOW,NOW+30m,BIC_02,TAR_02,USR_03,"[""bicycle-1.jpg"",""bicycle-2.jpg""]"
+BKG_05,2,230,2,NOW,NOW+2m,BIC_03,TAR_01,USR_04,"[""bicycle-1.jpg"",""bicycle-2.jpg""]"
+BKG_06, , , ,NOW,,BIC_03,TAR_01,USR_04,"[""bicycle-1.jpg"",""bicycle-2.jpg""]"

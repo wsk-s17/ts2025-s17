@@ -1,0 +1,5 @@
+user_key,name,email,phone,password_hash
+USR_01,User 1,user1@gmail.com,+77777777771,<hash(ts2025u1)>
+USR_02,User 2,user2@gmail.com,+77777777772,<hash(ts2025u2)>
+USR_03,User 3,user3@gmail.com,+77777777773,<hash(ts2025u3)>
+USR_04,User 4,user4@gmail.com,+77777777774,<hash(ts2025u4)>

@@ -1,0 +1,1409 @@
+openapi: 3.0.0
+paths:
+  /api/v1/auth/sign-in:
+    post:
+      operationId: AuthController_signIn
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      accessToken:
+                        type: string
+                        example: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: array
+                    example:
+                      - password must be longer than or equal to 8 characters
+                  error:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Invalid email or password
+                  error:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - Auth
+  /api/v1/auth/sign-up:
+    post:
+      operationId: AuthController_signUp
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      accessToken:
+                        type: string
+                        example: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: array
+                    example:
+                      - password must be longer than or equal to 8 characters
+                  error:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Invalid email
+                  error:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - Auth
+  /api/v1/auth/sign-out:
+    post:
+      operationId: AuthController_signOut
+      parameters: []
+      responses:
+        '204':
+          description: ''
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    enum:
+                      - Invalid token
+                      - Missing token
+                  error:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - Auth
+  /api/v1/auth/oauth:
+    get:
+      operationId: AuthController_getOAuthLink
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      link:
+                        type: string
+                        example: >-
+                          http://localhost:7000/authorize?response_type=code&client_id=cid-9143bf89&scope=openid&code_challenge=6oE295xCVhKuO_P44Qxp_yWAhLa2VHhUX_rysVlk1t4&code_challenge_method=S256
+      tags:
+        - Auth
+    post:
+      operationId: AuthController_loginOAuth
+      parameters:
+        - name: code
+          required: true
+          in: query
+          schema:
+            example: code-331564ec-388e-4b74-b2b7-da90cb536719
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      accessToken:
+                        type: string
+                        example: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unprocessable Entity
+                  statusCode:
+                    type: number
+                    example: 422
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Service Unavailable
+                  statusCode:
+                    type: number
+                    example: 503
+      tags:
+        - Auth
+  /api/v1/users/me:
+    get:
+      operationId: UserController_getUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      name:
+                        type: string
+                        example: ''
+                      email:
+                        type: string
+                        example: ''
+                      phone:
+                        type: string
+                        example: ''
+                      balance:
+                        type: number
+                        example: ''
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid token
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+      tags:
+        - User
+  /api/v1/users/me/bicycles:
+    get:
+      operationId: UserController_getMyBicycles
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          example: ''
+                        name:
+                          type: string
+                          example: ''
+                        percentageOfWear:
+                          type: number
+                          example: 5
+                        isOwner:
+                          type: boolean
+                          example: true
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - User
+  /api/v1/users/me/transactions:
+    get:
+      operationId: UserController_getMyPayments
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  balance:
+                    type: number
+                    example: 0
+                  payments:
+                    items:
+                      properties:
+                        type:
+                          enum:
+                            - REPLENISHMENT
+                            - WITHDRAWAL
+                            - RENTAL
+                            - MODERATION_REWARD
+                          example: MODERATION_REWARD
+                        value:
+                          type: number
+                          example: 0
+                        createdAt:
+                          type: date
+                          example: ''
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid token
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+      tags:
+        - User
+    post:
+      operationId: PayController_replenishment
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      balance:
+                        type: number
+                        example: 10000
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: array
+                    example:
+                      - amount must not be greater than 100000
+                  error:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: The balance cannot be less than zero
+                  error:
+                    type: string
+                    example: Conflict
+                  statusCode:
+                    type: number
+                    example: 409
+      tags:
+        - Pay
+  /api/v1/users/me/rental:
+    get:
+      operationId: UserController_getCurrentRent
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      id:
+                        type: string
+                        example: ''
+                      pricePerMin:
+                        type: number
+                        example: 100
+                      startedAt:
+                        type: date
+                        example: ''
+                      bicycle:
+                        properties:
+                          name:
+                            type: string
+                            example: ''
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid token
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+      tags:
+        - User
+    post:
+      operationId: UserController_rent
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentBicycleDto'
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: array
+                    example:
+                      - tariffId should not be empty
+                  error:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid token
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Promo code not found
+                  error:
+                    type: string
+                    example: Not Found
+                  statusCode:
+                    type: number
+                    example: 404
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: You're already renting a bike
+                      error:
+                        type: string
+                        example: Conflict
+                      statusCode:
+                        type: number
+                        example: 409
+                  - properties:
+                      message:
+                        type: string
+                        example: The bike is already taken
+                      error:
+                        type: string
+                        example: Conflict
+                      statusCode:
+                        type: number
+                        example: 409
+                  - properties:
+                      message:
+                        type: string
+                        example: The bike is not available
+                      error:
+                        type: string
+                        example: Conflict
+                      statusCode:
+                        type: number
+                        example: 409
+                  - properties:
+                      message:
+                        type: string
+                        example: The bike is broken
+                      error:
+                        type: string
+                        example: Conflict
+                      statusCode:
+                        type: number
+                        example: 409
+                  - properties:
+                      message:
+                        type: string
+                        example: The promo code is not valid
+                      error:
+                        type: string
+                        example: Conflict
+                      statusCode:
+                        type: number
+                        example: 409
+                  - properties:
+                      message:
+                        type: string
+                        example: There are not enough funds for insurance
+                      error:
+                        type: string
+                        example: Conflict
+                      statusCode:
+                        type: number
+                        example: 409
+      tags:
+        - User
+  /api/v1/users/me/rental/complete:
+    post:
+      operationId: UserController_finish
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinishRentBicycleDto'
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid token
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Don't have an active bike rental
+                  error:
+                    type: string
+                    example: Conflict
+                  statusCode:
+                    type: number
+                    example: 403
+      tags:
+        - User
+  /api/v1/users/me/work:
+    get:
+      operationId: UserController_getWork
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      id:
+                        type: string
+                        example: ''
+                      name:
+                        type: string
+                        example: ''
+                      rating:
+                        type: number
+                        example: '4.6'
+                      status:
+                        enum:
+                          - PENDING
+                          - APPROVED
+                          - CANCELED
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid token
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+      tags:
+        - User
+  /api/v1/bicycles:
+    get:
+      operationId: BicycleController_getBicycles
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          example: ''
+                        slug:
+                          type: string
+                          example: ''
+                        locationX:
+                          type: string
+                          example: '101.56'
+                        locationY:
+                          type: string
+                          example: '56.11'
+                        status:
+                          enum:
+                            - AVAILABLE
+                            - UNAVAILABLE
+                            - BUSY
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - Bicycle
+  /api/v1/bicycles/{bicycleId}:
+    get:
+      operationId: BicycleController_getBicycle
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      name:
+                        type: string
+                        example: ''
+                      description:
+                        type: string
+                        example: ''
+                      percentageOfWear:
+                        type: number
+                        example: 56
+                        minimum: 0
+                        maximum: 100
+                      pathToImage:
+                        type: string
+                        example: ''
+                      rating:
+                        type: number
+                        example: '4.6'
+                        minimum: 1
+                        maximum: 5
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Bicycle not found
+                  error:
+                    type: string
+                    example: Not Found
+                  statusCode:
+                    type: number
+                    example: 404
+      tags:
+        - Bicycle
+  /api/v1/bicycles/{bicycleId}/repair:
+    post:
+      operationId: BicycleController_repairBicycle
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepairBicycleDto'
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: array
+                    example:
+                      - >-
+                        type must be one of the following values: wash, repair,
+                        tires, chain
+                  error:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Bicycle not found
+                  error:
+                    type: string
+                    example: Not Found
+                  statusCode:
+                    type: number
+                    example: 404
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: You don't have enough funds
+                  error:
+                    type: string
+                    example: Conflict
+                  statusCode:
+                    type: number
+                    example: 409
+      tags:
+        - Bicycle
+  /api/v1/bicycles/{bicycleId}/rentals:
+    get:
+      operationId: BicycleController_getBicycleBookings
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          example: ''
+                        percentageOfWear:
+                          type: number
+                          example: 56
+                          minimum: 0
+                          maximum: 100
+                        photos:
+                          type: array
+                          example: []
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Bicycle not found
+                  error:
+                    type: string
+                    example: Not Found
+                  statusCode:
+                    type: number
+                    example: 404
+      tags:
+        - Bicycle
+  /api/v1/bicycles/{bicycleId}/rentals/{rentalId}/rate:
+    post:
+      operationId: BicycleController_rateBooking
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateBookingDto'
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: array
+                    example:
+                      - some error
+                  error:
+                    type: string
+                    example: Bad Request
+                  statusCode:
+                    type: number
+                    example: 400
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: The rent has already been assessed
+                      error:
+                        type: string
+                        example: Forbidden
+                      statusCode:
+                        type: number
+                        example: 400
+                  - properties:
+                      message:
+                        type: string
+                        example: The bicycle owner doesn't have enough money
+                      error:
+                        type: string
+                        example: Forbidden
+                      statusCode:
+                        type: number
+                        example: 400
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Bicycle not found
+                      error:
+                        type: string
+                        example: Not Found
+                      statusCode:
+                        type: number
+                        example: 404
+                  - properties:
+                      message:
+                        type: string
+                        example: Rental not found
+                      error:
+                        type: string
+                        example: Not Found
+                      statusCode:
+                        type: number
+                        example: 404
+      tags:
+        - Bicycle
+  /api/v1/bicycles/{bicycleId}/tariffs:
+    get:
+      operationId: TariffController_getBicycleTariffs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      oneOf:
+                        - properties:
+                            id:
+                              type: string
+                              example: ''
+                            name:
+                              type: string
+                              example: ''
+                            type:
+                              enum:
+                                - STATIC
+                            price:
+                              type: number
+                              example: 500
+                          required:
+                            - id
+                            - name
+                            - type
+                            - price
+                        - properties:
+                            id:
+                              type: string
+                              example: ''
+                            name:
+                              type: string
+                              example: ''
+                            type:
+                              enum:
+                                - DYNAMIC
+                            price:
+                              type: number
+                              example: 500
+                            additionalPrices:
+                              type: object
+                              properties:
+                                min:
+                                  type: number
+                                  example: 100
+                                max:
+                                  type: number
+                                  example: 500
+                              required:
+                                - min
+                                - max
+                          required:
+                            - id
+                            - name
+                            - type
+                            - price
+                            - additionalPrices
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Bicycle not found
+                  error:
+                    type: string
+                    example: Not Found
+                  statusCode:
+                    type: number
+                    example: 404
+      tags:
+        - Tariff
+  /api/v1/bicycles/{bicycleId}/tariffs/{tariffId}/price:
+    get:
+      operationId: TariffController_getCurrentPrice
+      parameters: []
+      responses:
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - Tariff
+  /api/v1/histories:
+    get:
+      operationId: HistoryController_getHistories
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - History
+  /api/v1/external-services/weather:
+    get:
+      operationId: ExternalServiceController_getCurrentWeather
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  color_scale_of_corks:
+                    enum:
+                      - green
+                      - yellow
+                      - red
+                      - black
+                  number_scale:
+                    type: number
+                    example: 50
+                    minimum: 1
+                    maximum: 100
+      tags:
+        - ExternalService
+  /api/v1/external-services/city:
+    get:
+      operationId: ExternalServiceController_getCurrentTraffic
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  weather:
+                    enum:
+                      - clear
+                      - fog
+                      - rain
+                      - snow
+                  temperature:
+                    type: number
+                    example: 25
+      tags:
+        - ExternalService
+  /api/v1/works:
+    get:
+      operationId: WorkController_getWorks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          example: ''
+                        name:
+                          type: string
+                          example: ''
+                        rating:
+                          type: number
+                          example: '4.6'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      message:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+                  - properties:
+                      message:
+                        type: string
+                        example: Invalid tokens
+                      error:
+                        type: string
+                        example: Unauthorized
+                      statusCode:
+                        type: number
+                        example: 401
+      tags:
+        - Work
+  /api/v1/works/{userId}:
+    post:
+      operationId: WorkController_sendRequest
+      parameters: []
+      responses:
+        '204':
+          description: ''
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+                  statusCode:
+                    type: number
+                    example: 401
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: The application has already been sent
+                  error:
+                    type: string
+                    example: Conflict
+                  statusCode:
+                    type: number
+                    example: 401
+      tags:
+        - Work
+info:
+  title: VelOrda
+  description: Description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: velorda
+    description: ''
+servers: []
+components:
+  schemas:
+    SignInDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    SignUpDto:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - email
+        - phone
+        - password
+    RentBicycleDto:
+      type: object
+      properties:
+        bicycleId:
+          type: string
+        tariffId:
+          type: string
+        promoCode:
+          type: string
+      required:
+        - bicycleId
+        - tariffId
+    FinishRentBicycleDto:
+      type: object
+      properties:
+        rating:
+          type: number
+          example: 4
+        photos:
+          type: array
+          example: []
+          minimum: 2
+      required:
+        - photos
+    RepairBicycleDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - wash
+            - repair
+            - tires
+            - chain
+      required:
+        - type
+    RateBookingDto:
+      type: object
+      properties:
+        rating:
+          type: number
+          example: 4
+          minimum: 1
+          maximum: 5
+      required:
+        - rating
+    TransactionDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - top-up
+            - withdraw
+        amount:
+          type: number
+          example: 5000
+          minimum: 1
+          maximum: 100000
+      required:
+        - type
+        - amount

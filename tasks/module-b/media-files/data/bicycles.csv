@@ -1,0 +1,4 @@
+bicycle_key,name,slug,description,locationX,locationY,pathToImage,category_ref
+BIC_01,MountainX,mountain-x,"Durable mountain bike with suspension...",3197.13,125.05,bicycle-1.jpg,CAT_01
+BIC_02,Roadster,roadster,"Lightweight and fast bike for city...",1375.15,1116.05,bicycle-2.jpg,CAT_01
+BIC_03,SwiftRide,swift-ride,"Agile city bike ideal for everyday...",132.68,994.19,bicycle-3.jpg,CAT_01
