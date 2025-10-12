@@ -31,7 +31,7 @@ There you can view your registered clients (name, client_id, client_secret, redi
 Now your application can direct the user to authorization:
 
 ```bash
-	http://localhost:3000/authorize?
+	https://oauth.ts2025.com/authorize?
 		response_type=code&
 		client_id=YOUR_CLIENT_ID&
 		scope=openid
