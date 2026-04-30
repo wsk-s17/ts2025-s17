@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "8f278309-f0cf-479a-a721-d751a1c95c1a",
+		"name": "ts2025-module-c",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37115679"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "sign-in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user1@gmail.com\",\r\n    \"password\": \"ts2025u1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/sign-in",
+							"host": ["{{host}}"],
+							"path": ["auth", "sign-in"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"usertest@gmail.com\",\r\n    \"name\": \"User Test\",\r\n    \"phone\": \"+77777777777\",\r\n    \"password\": \"ts2025u1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/sign-up",
+							"host": ["{{host}}"],
+							"path": ["auth", "sign-up"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/auth/sign-out",
+							"host": ["{{host}}"],
+							"path": ["auth", "sign-out"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bicycles",
+			"item": [
+				{
+					"name": "tariffs",
+					"item": [
+						{
+							"name": "retrieve tariffs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/bicycles/281bb00a-bbfd-4b48-a439-02e696ae99e2/tariffs",
+									"host": ["{{host}}"],
+									"path": [
+										"bicycles",
+										"281bb00a-bbfd-4b48-a439-02e696ae99e2",
+										"tariffs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get current price",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/bicycles/281bb00a-bbfd-4b48-a439-02e696ae99e2/tariffs/b9966acb-bddd-4dd3-95c4-1cb281263d95/price",
+									"host": ["{{host}}"],
+									"path": [
+										"bicycles",
+										"281bb00a-bbfd-4b48-a439-02e696ae99e2",
+										"tariffs",
+										"b9966acb-bddd-4dd3-95c4-1cb281263d95",
+										"price"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "rentals",
+					"item": [
+						{
+							"name": "retrieve bicycle rentals",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/bicycles/281bb00a-bbfd-4b48-a439-02e696ae99e2/rentals",
+									"host": ["{{host}}"],
+									"path": [
+										"bicycles",
+										"281bb00a-bbfd-4b48-a439-02e696ae99e2",
+										"rentals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rate bicycle rental",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rating\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/bicycles/281bb00a-bbfd-4b48-a439-02e696ae99e2/rentals/3153c753-4911-4aed-aa3d-947a29a08982/rate",
+									"host": ["{{host}}"],
+									"path": [
+										"bicycles",
+										"281bb00a-bbfd-4b48-a439-02e696ae99e2",
+										"rentals",
+										"3153c753-4911-4aed-aa3d-947a29a08982",
+										"rate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "retrieve all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/bicycles",
+							"host": ["{{host}}"],
+							"path": ["bicycles"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/bicycles/25fcd20d-2af7-404a-afa4-2b63b4d1f864",
+							"host": ["{{host}}"],
+							"path": ["bicycles", "25fcd20d-2af7-404a-afa4-2b63b4d1f864"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "repair a bicycle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"wash\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/bicycles/82232bb4-80f9-485c-950b-92df8135f686/repair",
+							"host": ["{{host}}"],
+							"path": [
+								"bicycles",
+								"82232bb4-80f9-485c-950b-92df8135f686",
+								"repair"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "transactions",
+					"item": [
+						{
+							"name": "replenishment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"replenishment\",\r\n    \"amount\": 50000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/me/transactions",
+									"host": ["{{host}}"],
+									"path": ["users", "me", "transactions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "withdrawal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"withdrawal\",\r\n    \"amount\": 1000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/me/transactions",
+									"host": ["{{host}}"],
+									"path": ["users", "me", "transactions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "retrieve my payments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/users/me/transactions",
+									"host": ["{{host}}"],
+									"path": ["users", "me", "transactions"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "rental",
+					"item": [
+						{
+							"name": "create rental",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bicycleId\": \"281bb00a-bbfd-4b48-a439-02e696ae99e2\",\r\n\t\"tariffId\": \"98dde7bf-a6ad-4d7d-bf26-6de7070310eb\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/me/rental",
+									"host": ["{{host}}"],
+									"path": ["users", "me", "rental"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "complete rental",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photos",
+											"type": "file",
+											"src": [
+												"/C:/Users/wsk/Desktop/ts2025-tasks/module-d/media-files/bicycles/bicycle.svg",
+												"/C:/Users/wsk/Desktop/ts2025-tasks/module-d/media-files/bicycles/bicycle-2.svg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users/me/rental/complete",
+									"host": ["{{host}}"],
+									"path": ["users", "me", "rental", "complete"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "retrieve current rental",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/me/rental",
+							"host": ["{{host}}"],
+							"path": ["users", "me", "rental"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/me",
+							"host": ["{{host}}"],
+							"path": ["users", "me"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve my bicycles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/me/bicycles",
+							"host": ["{{host}}"],
+							"path": ["users", "me", "bicycles"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve work",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/me/work",
+							"host": ["{{host}}"],
+							"path": ["users", "me", "work"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "works",
+			"item": [
+				{
+					"name": "retrieve works",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/works",
+							"host": ["{{host}}"],
+							"path": ["works"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/works/33cb78e6-8d94-465a-9e25-cda6c8cca3cd",
+							"host": ["{{host}}"],
+							"path": ["works", "33cb78e6-8d94-465a-9e25-cda6c8cca3cd"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "external-services",
+			"item": [
+				{
+					"name": "oauth",
+					"item": [
+						{
+							"name": "generate link",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/auth/oauth",
+									"host": ["{{host}}"],
+									"path": ["auth", "oauth"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get access token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/auth/oauth?code=code-331564ec-388e-4b74-b2b7-da90cb536719",
+									"host": ["{{host}}"],
+									"path": ["auth", "oauth"],
+									"query": [
+										{
+											"key": "code",
+											"value": "code-331564ec-388e-4b74-b2b7-da90cb536719"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "weather",
+					"item": [
+						{
+							"name": "retrieve current weather",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/external-services/weather",
+									"host": ["{{host}}"],
+									"path": ["external-services", "weather"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "city",
+					"item": [
+						{
+							"name": "retrieve current weather",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/external-services/city",
+									"host": ["{{host}}"],
+									"path": ["external-services", "city"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTc1OTU1MzYzNCwiZXhwIjoxNzU5NzI2NDM0LCJqdGkiOiI1MGQ1NTdlNy1mYjQxLTRkYTQtYmJlMi00MWQ2YTBjZTRmZDUifQ.6M5jVPfW1cEOWadxw1UI6TKMzYV6CGxaSFHExgUide4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [""]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000/api/v1"
+		}
+	]
+}
